@@ -1,2 +1,5 @@
 # ProjectAstro
-web app for astrological calculation
+web app for astrological calculation.
+
+# Tech stack
+react
