@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ProjectAstro/static/css/main.5b698a29.chunk.css",
-    "main.js": "/ProjectAstro/static/js/main.95461714.chunk.js",
-    "main.js.map": "/ProjectAstro/static/js/main.95461714.chunk.js.map",
+    "main.js": "/ProjectAstro/static/js/main.d3f7e477.chunk.js",
+    "main.js.map": "/ProjectAstro/static/js/main.d3f7e477.chunk.js.map",
     "runtime-main.js": "/ProjectAstro/static/js/runtime-main.167ea748.js",
     "runtime-main.js.map": "/ProjectAstro/static/js/runtime-main.167ea748.js.map",
     "static/js/2.3f3a99c9.chunk.js": "/ProjectAstro/static/js/2.3f3a99c9.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/5.d775475a.chunk.js": "/ProjectAstro/static/js/5.d775475a.chunk.js",
     "static/js/5.d775475a.chunk.js.map": "/ProjectAstro/static/js/5.d775475a.chunk.js.map",
     "index.html": "/ProjectAstro/index.html",
-    "precache-manifest.c4b11d5ae3001e491e4d1bc7cdad69d0.js": "/ProjectAstro/precache-manifest.c4b11d5ae3001e491e4d1bc7cdad69d0.js",
+    "precache-manifest.d19a2cd88d515673235a4be8966b86a5.js": "/ProjectAstro/precache-manifest.d19a2cd88d515673235a4be8966b86a5.js",
     "service-worker.js": "/ProjectAstro/service-worker.js",
     "static/css/main.5b698a29.chunk.css.map": "/ProjectAstro/static/css/main.5b698a29.chunk.css.map",
     "static/js/2.3f3a99c9.chunk.js.LICENSE.txt": "/ProjectAstro/static/js/2.3f3a99c9.chunk.js.LICENSE.txt",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.167ea748.js",
     "static/js/3.c5ff0b2b.chunk.js",
     "static/css/main.5b698a29.chunk.css",
-    "static/js/main.95461714.chunk.js"
+    "static/js/main.d3f7e477.chunk.js"
   ]
 }

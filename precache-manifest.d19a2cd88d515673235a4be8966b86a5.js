@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4433fdd9c910bb8e1e6eb7434dbefc14",
+    "revision": "24b03b0964ef6c2d6b1b40f9a2510ac4",
     "url": "/ProjectAstro/index.html"
   },
   {
-    "revision": "7e9b53b33d981e30eda7",
+    "revision": "79e48147b75971909447",
     "url": "/ProjectAstro/static/css/main.5b698a29.chunk.css"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ProjectAstro/static/js/5.d775475a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7e9b53b33d981e30eda7",
-    "url": "/ProjectAstro/static/js/main.95461714.chunk.js"
+    "revision": "79e48147b75971909447",
+    "url": "/ProjectAstro/static/js/main.d3f7e477.chunk.js"
   },
   {
     "revision": "4b6ed94ec97da94df34b",
