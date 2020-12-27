@@ -3,6 +3,7 @@ import { Paper, Grid } from "@material-ui/core";
 import InputMask from "react-input-mask";
 import Select from "react-select";
 import MaterialTable from "material-table";
+import Button from '@material-ui/core/Button';
 import "./pages.scss";
 
 const Rashis = [
@@ -63,13 +64,13 @@ export class DataEntry extends Component {
     testB: [77, 103, 130, 156, 190, 223, 257, 283, 310, 336, 10, 43],
     drakBhavaData: [],
     drakPlanetData: [],
+    showDrak:false
   };
 
   componentDidMount = () => {
     this.initBhavas();
     this.initPlanets();
-    this.createDrakBalForBhavas();
-    this.createDrakBalForPlanets();
+   
   };
 
   initPlanets = () => {
@@ -227,12 +228,12 @@ export class DataEntry extends Component {
     //   console.log("drak bal started")
     // }
     let drakData = this.state.drakBhavaData;
-    this.state.testP.forEach((planet, pIndex) => {
+    this.state.planetDataArray.forEach((planet, pIndex) => {
       let result;
       let arr = [];
-      this.state.testB.forEach((bhav, bIndex) => {
+      this.state.bhavaDataArray.forEach((bhav, bIndex) => {
         if (pIndex !== 7 && pIndex !== 8) {
-          let value = bhav - planet;
+          let value = bhav.finalData - planet.finalData;
           if (value < 0) {
             value = value + 360;
           }
@@ -261,12 +262,12 @@ export class DataEntry extends Component {
     //   console.log("drak bal started")
     // }
     let drakData = this.state.drakPlanetData;
-    this.state.testP.forEach((planet, pIndex) => {
+    this.state.planetDataArray.forEach((planet, pIndex) => {
       let result;
       let arr = [];
-      this.state.testP.forEach((graha, bIndex) => {
+      this.state.planetDataArray.forEach((graha, bIndex) => {
         if (pIndex !== 7 && pIndex !== 8 && bIndex !== 7 && bIndex !== 8) {
-          let value = graha - planet;
+          let value = graha.finalData - planet.finalData;
           if (value < 0) {
             value = value + 360;
           }
@@ -416,6 +417,17 @@ export class DataEntry extends Component {
     }
   };
 
+  drakBalClickHandler=()=>{
+     if(this.state.bhavaDataArray.every(bhav => bhav.finalData !== null) &&  this.state.planetDataArray.every(planet => planet.finalData !== null)){
+      this.createDrakBalForBhavas();
+    this.createDrakBalForPlanets();
+    this.setState({showDrak:true})
+    }
+    else{
+      alert("सर्व प्रथम सम्पूर्ण  ग्रह स्पष्ट एवं भाव स्पष्ट भरे |")
+    }
+    
+  }
   planetInputCreator = (graha) => {
     return (
       <div className="paper-content" key={graha.key}>
@@ -476,7 +488,7 @@ export class DataEntry extends Component {
     return (
       <div className="data-entry-container">
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs>
             <Paper className="paper-container">
               <div className="paper-heading">ग्रह स्पष्ट</div>
               <div className="paper-contents" style={{ paddingBottom: 156 }}>
@@ -497,12 +509,16 @@ export class DataEntry extends Component {
                     pageSizeOptions: [],
                     search: false,
                     paging: false,
+                    sorting:false,
+                    headerStyle: {
+                      zIndex: 0
+                    }
                   }}
                 />
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs>
             <Paper className="paper-container">
               <div className="paper-heading">भाव स्पष्ट</div>
               <div className="paper-contents">{bhavaInputs}</div>
@@ -521,12 +537,26 @@ export class DataEntry extends Component {
                     pageSizeOptions: [],
                     search: false,
                     paging: false,
+                    sorting:false,
+                    headerStyle: {
+                      zIndex: 0
+                    }
                   }}
                 />
               </div>
             </Paper>
           </Grid>
           <Grid item xs={12}>
+            <div className="bal-actions">
+              <Button variant="contained" color="primary" onClick={this.drakBalClickHandler}>
+              दृकबल  बोध 
+              </Button>
+            </div>
+          </Grid>
+          {
+            this.state.showDrak===true && (
+              <>
+              <Grid item xs={12}>
             <Paper className="paper-container">
               <div className="paper-heading">भावोपरि ग्रहाणां दृष्टयः </div>
               <div className="paper-table">
@@ -588,6 +618,7 @@ export class DataEntry extends Component {
                     pageSizeOptions: [],
                     search: false,
                     paging: false,
+                    sorting:false,
                   }}
                 />
               </div>
@@ -643,11 +674,16 @@ export class DataEntry extends Component {
                     pageSizeOptions: [],
                     search: false,
                     paging: false,
+                    sorting:false,
                   }}
                 />
               </div>
             </Paper>
           </Grid>
+              </>
+            )
+          }
+          
         </Grid>
       </div>
     );
