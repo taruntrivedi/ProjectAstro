@@ -62,7 +62,7 @@ export class DataEntry extends Component {
     testP: [108, 208, 165, 117, 222, 104, 330, 186, 6],
     testB: [77, 103, 130, 156, 190, 223, 257, 283, 310, 336, 10, 43],
     drakBhavaData: [],
-    drakPlanetData:[]
+    drakPlanetData: [],
   };
 
   componentDidMount = () => {
@@ -155,8 +155,7 @@ export class DataEntry extends Component {
                   : obj
               ),
             }),
-            () => {
-            }
+            () => {}
           );
         }
       );
@@ -215,8 +214,7 @@ export class DataEntry extends Component {
                   : obj
               ),
             }),
-            () => {
-            }
+            () => {}
           );
         }
       );
@@ -241,21 +239,22 @@ export class DataEntry extends Component {
           result = {
             key: bIndex,
             value: value,
+            drakbal:this.drakBalCalculator(pIndex,value)
           };
-          
+
           arr.push(result);
-        }
-        else{
-          result={
-            key:bIndex,
-            value:"N/A"
-          }
+        } else {
+          result = {
+            key: bIndex,
+            value: "N/A",
+            drakbal:"N/A",
+          };
           arr.push(result);
         }
       });
-      drakData[pIndex]=arr
+      drakData[pIndex] = arr;
     });
-    console.log(drakData)
+    console.log(drakData);
   };
   createDrakBalForPlanets = () => {
     // if(this.state.bhavaDataArray.every(bhav => bhav.finalData !== null) &&  this.state.planetDataArray.every(planet => planet.finalData !== null)){
@@ -265,32 +264,156 @@ export class DataEntry extends Component {
     this.state.testP.forEach((planet, pIndex) => {
       let result;
       let arr = [];
-        this.state.testP.forEach((graha, bIndex) => {
-          if (pIndex !== 7 && pIndex !== 8 && bIndex!==7 && bIndex!==8) {
-            let value = graha - planet;
-            if (value < 0) {
-              value = value + 360;
-            }
-            result = {
-              key: bIndex,
-              value: value,
-            };
-            
-            arr.push(result);
+      this.state.testP.forEach((graha, bIndex) => {
+        if (pIndex !== 7 && pIndex !== 8 && bIndex !== 7 && bIndex !== 8) {
+          let value = graha - planet;
+          if (value < 0) {
+            value = value + 360;
           }
-          else{
-            result={
-              key:bIndex,
-              value:"N/A"
-            }
-            arr.push(result);
-          }
-        });
-      
-      
-      drakData[pIndex]=arr
+          result = {
+            key: bIndex,
+            value: value,
+            drakbal:this.drakBalCalculator(pIndex,value)
+
+          };
+
+          arr.push(result);
+        } else {
+          result = {
+            key: bIndex,
+            value: "N/A",
+            drakbal:"N/A"
+          };
+          arr.push(result);
+        }
+      });
+
+      drakData[pIndex] = arr;
     });
-    console.log(drakData)
+    console.log(drakData);
+  };
+
+  drakBalCalculator = (planet, value) => {
+    let drakBal;
+    switch (planet) {
+      case 2:
+        if (value > 300 || value < 30) {
+          drakBal = 0;
+          return drakBal;
+        } else if (value >= 30 && value < 60) {
+          drakBal = Math.round((((value - 30) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 60 && value < 90) {
+          drakBal = Math.round(((15 + (value - 60)) * 10) / 6);
+          return drakBal;
+        } else if (value >= 90 && value < 121) {
+          drakBal = Math.round(((90 - value / 2) * 10) / 6) + 25;
+          return drakBal;
+        } else if (value >= 121 && value < 150) {
+          drakBal = Math.round(((150 - value) * 10) / 6);
+          return drakBal;
+        } else if (value >= 150 && value < 180) {
+          drakBal = Math.round(((value - 150) * 20) / 6);
+          return drakBal;
+        } else if (value >= 180 && value < 210) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 210 && value < 241) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6) + 25;
+          return drakBal;
+        } else if (value >= 241 && value <= 300) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        }
+
+        break;
+      case 4:
+        if (value > 300 || value < 30) {
+          drakBal = 0;
+          return drakBal;
+        } else if (value >= 30 && value < 60) {
+          drakBal = Math.round((((value - 30) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 60 && value < 90) {
+          drakBal = Math.round(((15 + (value - 60)) * 10) / 6);
+          return drakBal;
+        } else if (value >= 90 && value < 120) {
+          drakBal = Math.round(((90 - value / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 120 && value <= 150) {
+          drakBal = Math.round(((150 - value) * 10) / 6) + 50;
+          return drakBal;
+        } else if (value >= 151 && value < 180) {
+          drakBal = Math.round(((value - 150) * 20) / 6);
+          return drakBal;
+        } else if (value >= 180 && value < 240) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 240 && value <= 270) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6) + 50;
+          return drakBal;
+        } else if (value >= 271 && value <= 300) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        }
+        break;
+      case 6:
+        if (value > 300 || value < 30) {
+          drakBal = 0;
+          return drakBal;
+        } else if (value >= 30 && value < 60) {
+          drakBal = Math.round((((value - 30) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 60 && value <= 90) {
+          drakBal = Math.round(((15 + (value - 60)) * 10) / 6) + 75;
+          return drakBal;
+        } else if (value >= 91 && value < 120) {
+          drakBal = Math.round(((90 - value / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 120 && value < 150) {
+          drakBal = Math.round(((150 - value) * 10) / 6);
+          return drakBal;
+        } else if (value >= 150 && value < 180) {
+          drakBal = Math.round(((value - 150) * 20) / 6);
+          return drakBal;
+        } else if (value >= 180 && value < 270) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 270 && value <= 300) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6) + 75;
+          return drakBal;
+        }
+        break;
+      case 0:
+      case 1:
+      case 3:
+      case 5:
+        if (value > 300 || value < 30) {
+          drakBal = 0;
+          return drakBal
+        } else if (value >= 30 && value < 60) {
+          drakBal = Math.round((((value - 30) / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 60 && value < 90) {
+          drakBal = Math.round(((15 + (value - 60)) * 10) / 6);
+          return drakBal;
+        } else if (value >= 90 && value < 120) {
+          drakBal = Math.round(((90 - value / 2) * 10) / 6);
+          return drakBal;
+        } else if (value >= 120 && value < 150) {
+          drakBal = Math.round(((150 - value) * 10) / 6);
+          return drakBal;
+        } else if (value >= 150 && value < 180) {
+          drakBal = Math.round(((value - 150) * 20) / 6);
+          return drakBal;
+        } else if (value >= 180 && value <= 300) {
+          drakBal = Math.round((((300 - value) / 2) * 10) / 6);
+          return drakBal;
+        }
+        break;
+      default:
+        console.log(`planet is out of our planet system`);
+    }
   };
 
   planetInputCreator = (graha) => {
@@ -403,26 +526,60 @@ export class DataEntry extends Component {
               </div>
             </Paper>
           </Grid>
-        <Grid item xs ={12}>
-        <Paper className="paper-container">
-              <div className="paper-heading">भावोपरि ग्रहाणां  दृष्टयः </div>
+          <Grid item xs={12}>
+            <Paper className="paper-container">
+              <div className="paper-heading">भावोपरि ग्रहाणां दृष्टयः </div>
               <div className="paper-table">
                 <MaterialTable
                   columns={[
-                    { title: "भाव 1", render: rowData => <span>{rowData[0].value}</span> },
-                    { title: "भाव 2", render: rowData => <span>{rowData[1].value}</span> },
-                    { title: "भाव 3", render: rowData => <span>{rowData[2].value}</span> },
-                    { title: "भाव 4", render: rowData => <span>{rowData[3].value}</span> },
-                    { title: "भाव 5", render: rowData => <span>{rowData[4].value}</span> },
-                    { title: "भाव 6", render: rowData => <span>{rowData[5].value}</span> },
-                    { title: "भाव 7", render: rowData => <span>{rowData[6].value}</span> },
-                    { title: "भाव 8", render: rowData => <span>{rowData[7].value}</span> },
-                    { title: "भाव 9", render: rowData => <span>{rowData[8].value}</span> },
-                    { title: "भाव 10", render: rowData => <span>{rowData[9].value}</span> },
-                    { title: "भाव 11", render: rowData => <span>{rowData[10].value}</span> },
-                    { title: "भाव 12", render: rowData => <span>{rowData[11].value}</span> },
-
-
+                    {
+                      title: "भाव 1",
+                      render: (rowData) => <span>{rowData[0].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 2",
+                      render: (rowData) => <span>{rowData[1].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 3",
+                      render: (rowData) => <span>{rowData[2].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 4",
+                      render: (rowData) => <span>{rowData[3].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 5",
+                      render: (rowData) => <span>{rowData[4].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 6",
+                      render: (rowData) => <span>{rowData[5].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 7",
+                      render: (rowData) => <span>{rowData[6].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 8",
+                      render: (rowData) => <span>{rowData[7].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 9",
+                      render: (rowData) => <span>{rowData[8].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 10",
+                      render: (rowData) => <span>{rowData[9].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 11",
+                      render: (rowData) => <span>{rowData[10].drakbal}</span>,
+                    },
+                    {
+                      title: "भाव 12",
+                      render: (rowData) => <span>{rowData[11].drakbal}</span>,
+                    },
                   ]}
                   data={this.state.drakBhavaData}
                   title=""
@@ -435,23 +592,49 @@ export class DataEntry extends Component {
                 />
               </div>
             </Paper>
-        </Grid>
-        <Grid item xs ={12}>
-        <Paper className="paper-container">
-              <div className="paper-heading">ग्रहोपरि ग्रहाणां  दृष्टयः </div>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className="paper-container">
+              <div className="paper-heading">ग्रहोपरि ग्रहाणां दृष्टयः </div>
               <div className="paper-table">
                 <MaterialTable
                   columns={[
-                    { title: "सूर्य", render: rowData => <span>{rowData[0].value}</span> },
-                    { title: "चन्द्र", render: rowData => <span>{rowData[1].value}</span> },
-                    { title: "मंगल", render: rowData => <span>{rowData[2].value}</span> },
-                    { title: "बुध", render: rowData => <span>{rowData[3].value}</span> },
-                    { title: "गुरु", render: rowData => <span>{rowData[4].value}</span> },
-                    { title: "शुक्र", render: rowData => <span>{rowData[5].value}</span> },
-                    { title: "शनि", render: rowData => <span>{rowData[6].value}</span> },
-                    { title: "राहु", render: rowData => <span>{rowData[7].value}</span> },
-                    { title: "केतु", render: rowData => <span>{rowData[8].value}</span> },
-
+                    {
+                      title: "सूर्य",
+                      render: (rowData) => <span>{rowData[0].drakbal}</span>,
+                    },
+                    {
+                      title: "चन्द्र",
+                      render: (rowData) => <span>{rowData[1].drakbal}</span>,
+                    },
+                    {
+                      title: "मंगल",
+                      render: (rowData) => <span>{rowData[2].drakbal}</span>,
+                    },
+                    {
+                      title: "बुध",
+                      render: (rowData) => <span>{rowData[3].drakbal}</span>,
+                    },
+                    {
+                      title: "गुरु",
+                      render: (rowData) => <span>{rowData[4].drakbal}</span>,
+                    },
+                    {
+                      title: "शुक्र",
+                      render: (rowData) => <span>{rowData[5].drakbal}</span>,
+                    },
+                    {
+                      title: "शनि",
+                      render: (rowData) => <span>{rowData[6].drakbal}</span>,
+                    },
+                    {
+                      title: "राहु",
+                      render: (rowData) => <span>{rowData[7].drakbal}</span>,
+                    },
+                    {
+                      title: "केतु",
+                      render: (rowData) => <span>{rowData[8].drakbal}</span>,
+                    },
                   ]}
                   data={this.state.drakPlanetData}
                   title=""
@@ -464,7 +647,7 @@ export class DataEntry extends Component {
                 />
               </div>
             </Paper>
-        </Grid>
+          </Grid>
         </Grid>
       </div>
     );
